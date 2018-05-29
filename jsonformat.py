@@ -35,7 +35,8 @@ for record in csvrecords:
 
 
 def generate_person_entity(entity: Person):
-    format = {"first_name": entity.firstname, "last_name": entity.lastname, "age": entity.age, "favourite_colour": entity.fav_color}
+    format = {"first_name": entity.firstname, "last_name": entity.lastname, "age": entity.age,
+              "favourite_colour": entity.fav_color}
     return format
 
 
