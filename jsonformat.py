@@ -1,50 +1,39 @@
-import json
-import argparse
-import sys
-import csv
+import json, argparse, sys, csv
+from person import Person
 
-
-class Person:
-    def __init__(self, firstname, lastname, age, nationality, fav_color):
-        self.firstname = firstname
-        self.lastname = lastname
-        self.age = age
-        self.nationality = nationality
-        self.fav_color = fav_color
-
-
+# Extract filename from commandline arguments
 parser = argparse.ArgumentParser()
 parser.add_argument('files', nargs=argparse.REMAINDER)
 options = parser.parse_args()
 
-person_list = []
-
+# File input mode
 if len(options.files) > 0:
     if len(options.files) > 1:
         print("This client takes exactly one file for processing. Taking first file \"{}\"".format(options.files[0]))
     file = open(options.files[0],'r')
+# User input mode
 else:
+    print("Enter data: Ctrl-D (i.e. EOF) to exit after entering return key")
+    print("")
     file = sys.stdin
 
-csvrecords = csv.DictReader(file)
+person_record_map = csv.DictReader(file)
 
-for record in csvrecords:
-    person = Person(record["first_name"],record["surname"],record["age"],record["nationality"],
+person_list = []
+
+for record in person_record_map:
+    person = Person(record["first_name"],
+                    record["surname"],
+                    record["age"],
+                    record["nationality"],
                     record["favourite_colour"])
     person_list.append(person)
-
-
-def generate_person_entity(entity: Person):
-    format = {"first_name": entity.firstname, "last_name": entity.lastname, "age": entity.age,
-              "favourite_colour": entity.fav_color}
-    return format
-
 
 person_entity_list = []
 
 for person in person_list:
-    record = generate_person_entity(person)
-    person_entity_list.append(record)
+    person_entity_list.append(person.generate_person_entity())
+
 
 json_person_entity = json.dumps({"person": person_entity_list}, indent=2)
 
