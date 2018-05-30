@@ -1,4 +1,4 @@
-#!python
+#!/usr/python
 
 import json, argparse, sys, csv
 from person import Person
@@ -16,7 +16,6 @@ if len(options.files) > 0:
 # User input mode
 else:
     print("Enter data: Ctrl-D (i.e. EOF) to exit after entering return key")
-    print("")
     file = sys.stdin
 
 person_record_map = csv.DictReader(file)
