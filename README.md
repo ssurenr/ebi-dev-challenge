@@ -50,9 +50,9 @@ The program can take input in two modes.
         }
       ]
     }
-    ```
-    or like this:
-    
+    ```  
+   or like this:  
+   
     ```bash
     $ echo "first_name,surname,age,nationality,favourite_colour
     > John,Keynes,29,British,red
