@@ -36,7 +36,6 @@ person_entity_list = []
 for person in person_list:
     person_entity_list.append(person.generate_person_entity())
 
-
 json_person_entity = json.dumps({"person": person_entity_list}, indent=2)
 
 print(json_person_entity)
