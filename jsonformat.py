@@ -1,3 +1,5 @@
+#!python
+
 import json, argparse, sys, csv
 from person import Person
 
